@@ -1,36 +1,48 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Что в кино">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
-
-    <title>Что в кино</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-  </head>
-
-  <body>
-
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">Что в кино</a>
-        </div>
-      </div>
-    </nav>
-
+{% extends "index.html" %}
+{% block films_list %}
+<h2 class="text-center">Дайджест фильмов</h2>
     <div class="container">
-      <p>There Will Be Films</p>
-    </div><!-- /.container -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  </body>
-</html>
+      <table class="table">
+        <tbody>
+      {% for movie in movies %}
+        <tr><td>
+          <h2>{{movie['name']}}</h2>
+           <h4 class="text-primary">{{movie['description']}}</h4>
+            <div class="row">
+              <div class="col-md-5">
+                <img  class="img-rounded" src ="{{ movie['image'] }}"" width="460" height="230">
+              </div>
+              <div class="col-md-6">
+                <p class="lead"><strong>Жанр:</strong><span class="text-primary">{{movie['genre']}}</span></p>
+              </div>
+              <div class="col-md-6">
+                {% if movie['actors'] %}
+                  <p><strong>В ролях:</strong>
+                  {% for actor in movie['actors'] %}
+                   <span class="text-primary">{{actor}}</span>
+                  {% endfor%}
+                </p>
+                {% endif %}
+              </div>
+              <div class="col-md-6">
+                <p><strong >Рейтинг по версии Афиша:</strong><span class="text-primary">{{movie['afisha_rating']}}&#9734;</span></p>
+              </div>
+              {% if movie['kpi']['movie_rating'] %}
+                <div class="col-md-6">
+                <p><strong>Рейтинг по версии Kинопосик:</strong><span class="text-primary">{{movie['kpi']['movie_rating']}}&#9734;</span></p>
+                </div>
+              {% endif %}
+              {% if movie['kpi']['movie_votes'] %}
+              <div class="col-md-6">
+                <p><strong>Количество голосов:</strong><span class="text-primary">{{movie['kpi']['movie_votes']}}&#9734;</span></p>
+              </div>
+             {% endif %}
+  </div>
+  <div class="well well-sm"><p>{{movie['text']}}.</p></div></td></tr>
+      {% endfor%}
+        </tbody>
+          </table>
+            </div>
+              </div>
+              {% endblock %}
+  

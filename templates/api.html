@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% block api %}
+<div class="block_api">
+<div class="container">
+    <h2 class="text-center">Api information</h2>
+ <p class="navbar-text">По данной ссылке доступна вся информация о фильмах
+<a href="todo/api/full_information.json" class="navbar-link"> full information</a></p>
+
+</div>
+<div class="container">
+<ul class="list-group">
+  <li>Актерский состав; ключ:<span class="badge">actors</span></li>
+  <li>Рейтинг по версии сайта Afisha; ключ:<span class="badge">afisha_rating</span></li> 
+  <li>Краткое описание; ключ:<span class="badge">description</span></li> 
+  <li>Адрес фотографии; ключ:<span class="badge">image</span></li> 
+  <li>Название фильма; ключ:<span class="badge">name</span></li> 
+  <li>Краткое описание сюжета; ключ:<span class="badge">text</span></li>
+  <li>Рейтинг по версии Кинопоиск; ключ:<span class="badge">kpi</span></li>
+  <p>Внимание!!!Cайт Кинопоиск банит ip адреса,возможно ключ-kpi периодически будет не доступен</p>
+</ul>
+</div>
+</div>
+  {% endblock %}
