@@ -14,7 +14,7 @@ def parse_afisha_page():
     
 
 def get_movie_url():
-    MOST_WANTED = 10
+    most_wanted = 10
     store_url = []
     movies_url = parse_afisha_page()
     for movie_url in movies_url:
