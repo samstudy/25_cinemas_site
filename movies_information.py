@@ -78,7 +78,7 @@ def get_votes(movie):
         return None
 
 
-def collect_movie_information():
+def collect_movies_information():
     movies = get_wanted_movie()
     store_movie_information = [get_movie_details(movie) for movie in movies]
     return store_movie_information
