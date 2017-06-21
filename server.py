@@ -1,7 +1,7 @@
 from flask import Flask, Response, render_template, request
 from flask import jsonify
 from flask import json
-from movie_information import collect_movie_information
+from movies_information import collect_movies_information
 from flask_cache import Cache
 from werkzeug.contrib.cache import SimpleCache
 
@@ -14,7 +14,7 @@ cache = SimpleCache()
 def get_movies_from_cache():
     movies = cache.get('movies')
     if movies is None:
-        movies = collect_movie_information()
+        movies = collect_movies_information()
         cache.set('movies', movies, timeout=12 * 60 * 60)
     return movies
 
