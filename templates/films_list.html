@@ -7,8 +7,11 @@
             {% for movie in movies %}
             <tr>
                 <td>
-                    <h2><a href="{{movie['url_to_afisha']}}">{{movie['name']}}</a></h2>
-                    <h4 class="text-primary">{{movie['description']}}</h4>
+                    <h2>{% for link in afisha_link %}<a href="{{link}}"> {% endfor%}{{movie['name']}}</a></h2>
+
+                    <h4 class = 'text-primary'>{{movie['origin_name']}}</h4>
+                    
+                    <h4>{{movie['description']}}</h4>
                     <div class="row">
                         <div class="col-md-5">
                             <img  class="img-rounded" src ="{{ movie['image'] }}" width="460" height="230" alt="Movie image">
@@ -16,11 +19,12 @@
                         <div class="col-md-6">
                             <p class="lead"><strong>Жанр: </strong><span class="text-primary">{{movie['genre']}}</span></p>
                         </div>
+                       
                         <div class="col-md-6">
                             {% if movie['actors'] %}
                             <p><strong>В ролях: </strong>
                                 {% for actor in movie['actors'] %}
-                                <span class="text-primary">{{actor}}</span>
+                                <span class="text-primary">{{actor}},</span>
                                 {% endfor%}
                             </p>
                             {% endif %}
@@ -28,14 +32,14 @@
                         <div class="col-md-6">
                             <p><strong >Рейтинг по версии Афиша: </strong><span class="text-primary">{{movie['afisha_rating']}}&#9734;</span></p>
                         </div>
-                        {% if movie['kpi']['movie_rating'] %}
+                        {% if movie['rating'] %}
                         <div class="col-md-6">
-                            <p><strong>Рейтинг по версии Kинопосик: </strong><span class="text-primary">{{movie['kpi']['movie_rating']}}&#9734;</span></p>
+                            <p><strong>Рейтинг по версии Kинопосик: </strong><span class="text-primary">{{movie['rating']}}&#9734;</span></p>
                         </div>
                         {% endif %}
-                        {% if movie['kpi']['movie_votes'] %}
+                        {% if movie['votes'] %}
                         <div class="col-md-6">
-                            <p><strong>Количество голосов: </strong><span class="text-primary">{{movie['kpi']['movie_votes']}}&#9734;</span></p>
+                            <p><strong>Количество голосов: </strong><span class="text-primary">{{movie['votes']}}&#9734;</span></p>
                         </div>
                         {% endif %}
                     </div>
