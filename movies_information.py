@@ -81,8 +81,8 @@ def get_movie_details(afisha_html,knpoisk_html):
 def collect_movies_information():
     knpoisk_url = 'https://www.kinopoisk.ru/index.php'
     movies = get_movies_from_afisha()
-    moviess = [movie.find('h3',{'class':'usetags'}).find('a', href=True) for movie in movies]
-    knpoisk_links,afisha_links = zip(*[get_wanted_movie_urls(movie) for movie in moviess])
+    movie_links = [movie.find('h3',{'class':'usetags'}).find('a', href=True) for movie in movies]
+    knpoisk_links,afisha_links = zip(*[get_wanted_movie_urls(link) for link in movie_links])
     knpoisk_htmls = get_page_as_html(knpoisk_links,knpoisk_url)
     afisha_htmls = get_page_as_html(afisha_links)
     movies_html_dic = dict(zip(afisha_htmls, knpoisk_htmls))
